@@ -47,8 +47,11 @@
 #docker swarm leave --force      # Take down a single node swarm from the manager
 
 ## Supprimer une stack
-#docker stack rm mysql
+#docker stack rm server
 #docker swarm leave --force
 
 #docker swarm init
-docker stack deploy -c stack.yml mysql
+#docker stack deploy -c stack.yml server
+
+docker-compose -f stack.yml up -d
+
