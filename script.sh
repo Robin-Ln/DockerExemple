@@ -53,5 +53,5 @@
 #docker swarm init
 #docker stack deploy -c stack.yml server
 
-docker-compose -f stack.yml up -d
+docker-compose -f stack.yml up -d --remove-orphans
 
