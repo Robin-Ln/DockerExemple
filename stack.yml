@@ -13,7 +13,7 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=user
     ports:
-      - '3306:3306'
+      - 3306:3306
     volumes:
       - db-volume:/var/lib/mysql
     networks:
@@ -24,7 +24,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - '8080:8080'
+      - 8080:8080
     networks:
       - network
 
@@ -32,8 +32,8 @@ services:
     image: jenkins/jenkins:lts
     restart: always
     ports:
-      - '8081:8080'
-      - '5000'
+      - 8081:8080
+      - 5000
     volumes:
       - jenkins-volume:/var/jenkins_home
     networks:
@@ -43,9 +43,19 @@ services:
     image: sonarqube
     restart: always
     ports:
-      - "8082:9000"
+      - 8082:9000
     volumes:
       - sonarqube-volume:/opt/sonarqube
+    networks:
+      - network
+
+  portainer:
+    image: portainer/portainer
+    restart: always
+    ports:
+      - 8083:9000
+    volumes:
+      - portainer-volume:/data
     networks:
       - network
 
@@ -53,6 +63,7 @@ volumes:
   db-volume:
   jenkins-volume:
   sonarqube-volume:
+  portainer-volume:
 
 networks:
   network:
