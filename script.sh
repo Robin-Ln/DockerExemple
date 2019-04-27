@@ -20,9 +20,6 @@
 #docker container ls --all
 #docker container ls -aq
 
-## Supprimer une stack
-#docker stack rm mysql
-
 #docker build -t friendlyhello .  # Create image using this directory's Dockerfile
 #docker run -p 4000:80 friendlyhello  # Run "friendlyhello" mapping port 4000 to 80
 #docker run -d -p 4000:80 friendlyhello         # Same thing, but in detached mode
@@ -40,4 +37,18 @@
 #docker push username/repository:tag            # Upload tagged image to registry
 #docker run username/repository:tag                   # Run image from a registry
 
+#docker stack ls                                            # List stacks or apps
+#docker stack deploy -c <composefile> <appname>  # Run the specified Compose file
+#docker service ls                 # List running services associated with an app
+#docker service ps <service>                  # List tasks associated with an app
+#docker inspect <task or container>                   # Inspect task or container
+#docker container ls -q                                      # List container IDs
+#docker stack rm <appname>                             # Tear down an application
+#docker swarm leave --force      # Take down a single node swarm from the manager
+
+## Supprimer une stack
+#docker stack rm mysql
+#docker swarm leave --force
+
+#docker swarm init
 docker stack deploy -c stack.yml mysql

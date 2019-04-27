@@ -8,7 +8,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_DATABASE: 'db;sonar'
+      MYSQL_DATABASE: 'sonar'
       MYSQL_ROOT_PASSWORD: 'root'
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'user'
@@ -16,12 +16,17 @@ services:
       - '3306:3306'
     volumes:
       - db-volume:/var/lib/mysql
+    networks:
+      - network
+
 
   adminer:
     image: adminer
     restart: always
     ports:
       - '8080:8080'
+    networks:
+      - network
 
   jenkins:
     image: jenkins/jenkins:lts
@@ -31,6 +36,8 @@ services:
       - '5000'
     volumes:
       - jenkins-volume:/var/jenkins_home
+    networks:
+      - network
 
   sonarqube:
     image: sonarqube
@@ -40,9 +47,14 @@ services:
       - sonar.jdbc.password=root
       - sonar.jdbc.url=jdbc:sqlserver://localhost;databaseName=sonar
     ports:
-      - "9000:9000"
+      - "8082:9000"
+    networks:
+      - network
 
 
 volumes:
   db-volume:
   jenkins-volume:
+
+networks:
+  network:
