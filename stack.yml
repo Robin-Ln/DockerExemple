@@ -56,6 +56,7 @@ services:
       - 8083:9000
     volumes:
       - portainer-volume:/data
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - network
 
