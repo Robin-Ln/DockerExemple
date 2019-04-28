@@ -1,10 +1,9 @@
-# Use root/example as user/password credentials
 version: '3.1'
 
 services:
 
   mysql:
-    image: mysql:latest
+    image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -20,27 +19,31 @@ services:
       - network
 
 
-  adminer:
-    image: adminer:latest
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql:db
     restart: always
     ports:
-      - 8080:8080
+      - 8080:80
     networks:
       - network
 
   jenkins:
-    image: jenkins/jenkins:latest
+    image: jenkins/jenkins
     restart: always
     ports:
       - 8081:8080
       - 5000
     volumes:
-      - jenkins-volume:/var/jenkins_home
+      - ./jenkins-volume:/var/jenkins_home
     networks:
       - network
 
   sonarqube:
-    image: sonarqube:latest
+    image: sonarqube
+    links:
+      - mysql:db
     restart: always
     ports:
       - 8082:9000
@@ -50,7 +53,7 @@ services:
       - network
 
   portainer:
-    image: portainer/portainer:latest
+    image: portainer/portainer
     restart: always
     ports:
       - 8083:9000
@@ -61,7 +64,7 @@ services:
       - network
 
   tomcat:
-    image: tomcat:latest
+    image: tomcat
     restart: always
     environment:
       - JAVA_OPTS=-Duser.timezone='Europe/Paris'
@@ -74,7 +77,6 @@ services:
 
 volumes:
   db-volume:
-  jenkins-volume:
   sonarqube-volume:
   portainer-volume:
   tomcat-volume:
