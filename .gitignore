@@ -1,2 +1,4 @@
-.idea
+idea
 jenkins-volume
+mysql-volume
+portainer-volume
