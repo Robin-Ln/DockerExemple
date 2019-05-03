@@ -1,0 +1,76 @@
+version: '3.1'
+
+services:
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql-volume:/var/lib/mysql
+    networks:
+      - network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql:db
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      - network
+
+  jenkins:
+    image: jenkins/jenkins
+    restart: always
+    ports:
+      - 8081:8080
+      - 5000
+    volumes:
+      - ./jenkins-volume:/var/jenkins_home
+    networks:
+      - network
+
+  sonarqube:
+    image: sonarqube
+    links:
+      - mysql:db
+    restart: always
+    ports:
+      - 8082:9000
+    networks:
+      - network
+
+  portainer:
+    image: portainer/portainer
+    restart: always
+    ports:
+      - 8083:9000
+    volumes:
+      - ./portainer-volume:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - network
+
+  tomcat:
+    image: tomcat
+    restart: always
+    environment:
+      - JAVA_OPTS=-Duser.timezone='Europe/Paris'
+    ports:
+      - 8084:8080
+    networks:
+      - network
+
+
+networks:
+  network:
+    driver: bridge

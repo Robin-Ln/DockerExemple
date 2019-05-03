@@ -1,0 +1,47 @@
+version: '3.1'
+
+services:
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer:latest
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - portainer-volume:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  jenkins:
+    image: jenkins/jenkins:latest
+    container_name: jenkins
+    restart: always
+    ports:
+      - 9002:8080
+    volumes:
+      - jenkins-volume:/var/jenkins_home
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    external_links:
+      - mysql-network:db
+    ports:
+      - 9001:80
+
+
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    external_links:
+      - mysql-network:db
+    restart: always
+    ports:
+      - 9003:9000
+
+volumes:
+  portainer-volume:
+  jenkins-volume:
+
