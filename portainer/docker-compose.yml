@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer:latest
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - portainer-volume:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - global-networks
+
+volumes:
+  portainer-volume:
+  jenkins-volume:
+
+networks:
+  global-networks:
+    driver: bridge
+
+
