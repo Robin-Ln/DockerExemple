@@ -11,15 +11,7 @@ services:
     volumes:
       - portainer-volume:/data
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - global-networks
 
 volumes:
   portainer-volume:
-  jenkins-volume:
-
-networks:
-  global-networks:
-    driver: bridge
-
 
