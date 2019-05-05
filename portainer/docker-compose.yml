@@ -19,5 +19,6 @@ volumes:
 
 networks:
   global-network:
-    driver: bridge
+    external:
+      name: global-network
 
