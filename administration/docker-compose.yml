@@ -18,8 +18,14 @@ services:
     restart: always
     ports:
       - 9002:9000
+    links:
+      - admin-db:db
     volumes:
       - sonarqube-volume
+    depends_on:
+      - admin-db
+    networks:
+      - global-network
 
   admin-db:
     image: mysql:latest
@@ -32,8 +38,14 @@ services:
       - 3307:3306
     volumes:
       - admin-db-volume:/var/lib/mysql
+    networks:
+      - global-network
 
 volumes:
   jenkins-volume:
   sonarqube-volume:
   admin-db-volume:
+
+networks:
+  global-network:
+    external: true

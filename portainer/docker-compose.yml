@@ -15,3 +15,7 @@ services:
 volumes:
   portainer-volume:
 
+networks:
+  global-network:
+    driver: bridge
+
