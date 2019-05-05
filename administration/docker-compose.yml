@@ -48,4 +48,5 @@ volumes:
 
 networks:
   global-network:
+    name: global-network
     external: true
