@@ -17,9 +17,9 @@ services:
     container_name: sonarqube
     restart: always
     environment:
-      - sonar.jdbc.username=root
+      - sonar.jdbc.username=postgres
       - sonar.jdbc.password=1azerty.
-      - sonar.jdbc.url=jdbc:postgresql://admin-db:1000/sonar
+      - sonar.jdbc.url=jdbc:postgresql://admin-db/sonar
     ports:
       - 9002:9000
     depends_on:
@@ -32,9 +32,8 @@ services:
     container_name: admin-db
     restart: always
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1azerty.
-    ports:
-      - 1000:1000
     volumes:
       - admin-db-volume:/var/lib/mysql
     networks:
