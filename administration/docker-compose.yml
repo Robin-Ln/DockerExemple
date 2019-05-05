@@ -19,8 +19,7 @@ services:
     environment:
       - sonar.jdbc.username=root
       - sonar.jdbc.password=1azerty.
-      - sonar.jdbc.url=jdbc:mysql://admin-db:3306/sonar?useUnicode=true&characterEncoding=utf8
-      - sonar.jdbc.driverClassName=com.mysql.jdbc.Driver
+      - sonar.jdbc.url=jdbc:postgresql://admin-db:3306/sonar
     ports:
       - 9002:9000
     depends_on:
@@ -29,14 +28,13 @@ services:
       - global-network
 
   admin-db:
-    image: mysql:latest
+    image: postgres:latest
     container_name: admin-db
-    command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=1azerty.
+      - POSTGRES_PASSWORD=1azerty.
     ports:
-      - 3307:3306
+      - 3307:1000
     volumes:
       - admin-db-volume:/var/lib/mysql
     networks:
