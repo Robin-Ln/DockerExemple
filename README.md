@@ -14,9 +14,44 @@ Il permet la creation des volumes et la creation du gitignore.
 - mysql
 - potainer
 
-## Instalation de docker compose sur linux
+## Instalation de docker  et docker-compose sur linux
 
 ### Commandes
+
+```bash
+sudo apt-get update
+```
+
+```bash
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+```
+
+```bash
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+
+```bash
+sudo apt-key fingerprint 0EBFCD88
+```
+```bash
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+```
+
+```bash
+sudo apt-get update
+```
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
 
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
