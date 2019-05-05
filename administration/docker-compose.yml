@@ -20,6 +20,7 @@ services:
       - sonar.jdbc.username=root
       - sonar.jdbc.password=1azerty.
       - sonar.jdbc.url=jdbc:mysql://admin-db:3306/sonar?useUnicode=true&characterEncoding=utf8
+      - sonar.jdbc.driverClassName=com.mysql.jdbc.Driver
     ports:
       - 9002:9000
     depends_on:
