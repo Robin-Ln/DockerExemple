@@ -18,8 +18,8 @@ services:
     restart: always
     environment:
       - SONARQUBE_JDBC_USERNAME=root
-      - SONARQUBE_JDBC_PASSWORD=1azerty
-      - SONARQUBE_JDBC_URL=jdbc:mysql://admin-db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+      - SONARQUBE_JDBC_PASSWORD=1azerty.
+      - SONARQUBE_JDBC_URL=jdbc:mysql://admin-db:3307/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
     ports:
       - 9002:9000
     links:
