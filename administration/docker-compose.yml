@@ -19,11 +19,9 @@ services:
     environment:
       - SONARQUBE_JDBC_USERNAME=root
       - SONARQUBE_JDBC_PASSWORD=1azerty.
-      - SONARQUBE_JDBC_URL=jdbc:mysql://admin-db:3307/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+      - SONARQUBE_JDBC_URL=jdbc:mysql://db:3307/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
     ports:
       - 9002:9000
-    links:
-      - admin-db:db
     depends_on:
       - admin-db
     networks:
