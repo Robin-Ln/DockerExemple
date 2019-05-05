@@ -11,6 +11,8 @@ services:
     volumes:
       - portainer-volume:/data
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - global-network
 
 volumes:
   portainer-volume:
