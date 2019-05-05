@@ -19,7 +19,7 @@ services:
     environment:
       - sonar.jdbc.username=root
       - sonar.jdbc.password=1azerty.
-      - sonar.jdbc.url=jdbc:postgresql://admin-db:3306/sonar
+      - sonar.jdbc.url=jdbc:postgresql://admin-db:1000/sonar
     ports:
       - 9002:9000
     depends_on:
@@ -34,9 +34,18 @@ services:
     environment:
       - POSTGRES_PASSWORD=1azerty.
     ports:
-      - 3307:1000
+      - 1000:1000
     volumes:
       - admin-db-volume:/var/lib/mysql
+    networks:
+      - global-network
+
+  db-adminer:
+    image: adminer:latest
+    container_name: db-adminer
+    restart: always
+    ports:
+      - 9003:8080
     networks:
       - global-network
 
