@@ -20,8 +20,6 @@ services:
       - 9002:9000
     links:
       - admin-db:db
-    volumes:
-      - sonarqube-volume
     depends_on:
       - admin-db
     networks:
