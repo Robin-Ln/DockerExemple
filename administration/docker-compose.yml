@@ -36,7 +36,8 @@ services:
       - POSTGRES_PASSWORD=1azerty.
       - POSTGRES_DB=sonar
     volumes:
-      - admin-db-data:/var/lib/mysql
+      - goaccess-logs:/var/log
+      - admin-db-data:/var/lib/postgresql/data
     networks:
       - global-network
 
@@ -48,14 +49,6 @@ services:
       - 9003:8080
     networks:
       - global-network
-
-  goaccess:
-    build:
-      context: ../dockerfiles/goaccess
-    image: ncarlier/goaccess:latest
-    volumes:
-      - goaccess-logs:/srv/logs:ro
-      - goaccess-reports:/srv/reports
 
 volumes:
   jenkins-data:
