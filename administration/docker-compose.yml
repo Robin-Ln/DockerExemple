@@ -34,14 +34,15 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1azerty.
+      - POSTGRES_DB=sonar
     volumes:
       - admin-db-volume:/var/lib/mysql
     networks:
       - global-network
 
-  db-adminer:
+  adminer:
     image: adminer:latest
-    container_name: db-adminer
+    container_name: adminer
     restart: always
     ports:
       - 9003:8080
