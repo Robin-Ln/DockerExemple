@@ -9,7 +9,7 @@ services:
     ports:
       - 9001:8080
     volumes:
-      - jenkins-volume:/var/jenkins_home
+      - jenkins-data:/var/jenkins_home
 
 
   sonarqube:
@@ -36,7 +36,7 @@ services:
       - POSTGRES_PASSWORD=1azerty.
       - POSTGRES_DB=sonar
     volumes:
-      - admin-db-volume:/var/lib/mysql
+      - admin-db-data:/var/lib/mysql
     networks:
       - global-network
 
@@ -49,10 +49,19 @@ services:
     networks:
       - global-network
 
+  goaccess:
+    build:
+      context: ../dockerfiles/goaccess
+    image: ncarlier/goaccess:latest
+    volumes:
+      - goaccess-logs:/srv/logs:ro
+      - goaccess-reports:/srv/reports
+
 volumes:
-  jenkins-volume:
-  sonarqube-volume:
-  admin-db-volume:
+  jenkins-data:
+  admin-db-data:
+  goaccess-logs:
+  goaccess-reports:
 
 networks:
   global-network:

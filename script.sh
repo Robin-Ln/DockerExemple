@@ -1,18 +1,19 @@
 #!/bin/bash
 
 ## creation des dossiers des volumes
-#volumes="jenkins-volume mysql-volume portainer-volume"
+#containers="jenkins mysql portainer"
+#basePath="/opt/app/volumes/"
 #gitignore=".gitignore"
 #
 #echo "idea" > $gitignore
 #
 #for volume in $volumes
 #do
+#    fullPath=`$basePath/$volume`
 #    if ! test -d $volume
 #    then
 #      mkdir -p ./$volume
 #    fi
-#    echo $volume >> $gitignore
 #done
 
 ## Exemple de commandes

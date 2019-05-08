@@ -9,13 +9,13 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - portainer-volume:/data
+      - portainer-data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - global-network
 
 volumes:
-  portainer-volume:
+  portainer-data:
 
 networks:
   global-network:
